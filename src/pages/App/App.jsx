@@ -6,6 +6,7 @@ import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
+import TopStoriesPage from "../TopStoriesPage/TopStoriesPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -17,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/orders/new" element={<NewOrderPage />} />
             <Route path="/orders" element={<OrderHistoryPage />} />
+            <Route path="/stories" element={<TopStoriesPage />} />
+
           </Routes>
         </>
       ) : (
