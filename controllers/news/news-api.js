@@ -9,7 +9,7 @@ async function topStories(req, res) {
   const params = new URLSearchParams({
     language: "en",
     country: "ca",
-    apiKey: process.env.REACT_APP_NEWS_KEY,
+    apiKey: process.env.NEWS_KEY,
   });
   try {
     const response = await fetch(`${newsUrl}${params}`);
