@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
+import SearchPage from "../SearchPage/SearchPage";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
@@ -36,6 +37,8 @@ function App() {
           <Routes>
             <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
             <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
+            <Route path="/stories" element={<TopStoriesPage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>
       ) : (
