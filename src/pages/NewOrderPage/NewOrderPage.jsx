@@ -1,5 +1,11 @@
 import React from "react";
+import * as News from "../../utilities/news-api";
 
 export default function NewOrderPage() {
-  return <h1>NewOrderPage</h1>;
+  async function handleClick() {
+    const stories = await News.topStories();
+    console.log(stories);
+  }
+
+  return <button onClick={handleClick}>Test API</button>;
 }
