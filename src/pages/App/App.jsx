@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
+import SearchPage from "../SearchPage/SearchPage";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import TopStoriesPage from "../TopStoriesPage/TopStoriesPage";
@@ -16,10 +17,8 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders" element={<OrderHistoryPage />} />
             <Route path="/stories" element={<TopStoriesPage />} />
-
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>
       ) : (
