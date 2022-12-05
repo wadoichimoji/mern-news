@@ -90,6 +90,8 @@ export default function LoginForm({ setUser }) {
                 required
                 fullWidth
                 id="email"
+                value={credentials.email}
+                onChange={handleChange}
                 label="Email Address"
                 name="email"
                 autoComplete="email"
@@ -99,6 +101,8 @@ export default function LoginForm({ setUser }) {
                 margin="normal"
                 required
                 fullWidth
+                value={credentials.password}
+                onChange={handleChange}
                 name="password"
                 label="Password"
                 type="password"
@@ -118,16 +122,16 @@ export default function LoginForm({ setUser }) {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
-                {/* <Grid item>
+                </Grid> */}
+                <Grid item>
                   <Link href="#" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
-                </Grid> */}
+                </Grid>
               </Grid>
             </Box>
           </Box>

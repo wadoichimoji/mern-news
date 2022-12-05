@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { signUp } from "../../utilities/users-service";
+// import AuthButton from "../AuthButton/AuthButton";
 
 /* Css imports */
 import Avatar from "@mui/material/Avatar";
@@ -20,7 +21,8 @@ const theme = createTheme();
 
 export default class SignUpForm extends Component {
   state = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirm: "",
