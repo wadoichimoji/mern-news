@@ -2,11 +2,14 @@ import StoryCard from "../../components/StoryCard/StoryCard";
 
 import React from 'react'
 
-export default function TopStoryPage() {
+export default function TopStoryPage({topStories}) {
+  console.log(topStories)
   return (
     <>
-    <h1>Hello</h1>
-    <div><StoryCard data={data} /></div>
+    <div>{topStories.map((story, idx) => {
+        return <StoryCard story={story} key={idx} />;
+    })}
+    </div>
     </>
   )
 }

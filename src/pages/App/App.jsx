@@ -8,6 +8,7 @@ import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
+import * as newsAPI from "../../utilities/news-api";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -16,13 +17,14 @@ function App() {
 
   useEffect(function(){
     async function getStory(){
-      const stories = await storiesAPI.getTopStories()
+      const stories = await newsAPI.topStories()
       setTopStories(stories)
     }
-    async function saveStory(){
-      const stories = await storiesAPI.getSavedStories()
-      setSavedStories(stories)
-    }
+    // async function saveStory(){
+    //   const stories = await newsAPI.getSavedStories()
+    //   setSavedStories(stories)
+    // }
+    getStory()
   },[])
 
 
@@ -32,8 +34,8 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/stories/top" element={<TopStoryPage topStories={topStories}/>} />
-            <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories}/>} />
+            <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
+            <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
           </Routes>
         </>
       ) : (

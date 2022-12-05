@@ -7,17 +7,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function StoryCard() {
+export default function StoryCard({story}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={story.urlToImage}
         alt="green iguana"
       />
       <CardActions>
-        <Button size="small">(source/publication)</Button>
+        <a href={story.url}><Button size="small">{story.source.name}</Button></a>
         <Button size="small">Save +</Button>
       </CardActions>
       <CardContent>
