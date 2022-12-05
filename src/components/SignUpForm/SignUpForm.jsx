@@ -25,7 +25,6 @@ export default class SignUpForm extends Component {
     lastName: "",
     email: "",
     password: "",
-    confirm: "",
     error: "",
   };
 
@@ -80,8 +79,11 @@ export default class SignUpForm extends Component {
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
+                    type="text"
                     required
                     fullWidth
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
                     id="firstName"
                     label="First Name"
                     autoFocus
@@ -91,6 +93,9 @@ export default class SignUpForm extends Component {
                   <TextField
                     required
                     fullWidth
+                    type="text"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
                     id="lastName"
                     label="Last Name"
                     name="lastName"
@@ -101,6 +106,9 @@ export default class SignUpForm extends Component {
                   <TextField
                     required
                     fullWidth
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
                     id="email"
                     label="Email Address"
                     name="email"
@@ -111,6 +119,8 @@ export default class SignUpForm extends Component {
                   <TextField
                     required
                     fullWidth
+                    value={this.state.password}
+                    onChange={this.handleChange}
                     name="password"
                     label="Password"
                     type="password"
@@ -127,9 +137,17 @@ export default class SignUpForm extends Component {
               >
                 Sign Up
               </Button>
+              <Link
+                href="#"
+                variant="body2"
+                onClick={() => this.props.setShowSignUp(!this.props.showSignUp)}
+              >
+                {"Already have an account? Sign In"}
+              </Link>
               <Grid container justifyContent="flex-end">
                 <Grid item></Grid>
               </Grid>
+              <p className="error-message">&nbsp;{this.state.error}</p>
             </Box>
           </Box>
         </Container>

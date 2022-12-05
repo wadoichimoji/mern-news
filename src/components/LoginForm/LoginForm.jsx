@@ -17,7 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
-export default function LoginForm({ setUser }) {
+export default function LoginForm({ setUser, setShowSignUp, showSignUp }) {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -124,11 +124,15 @@ export default function LoginForm({ setUser }) {
               <Grid container>
                 {/* <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                  Forgot password?
                   </Link>
                 </Grid> */}
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link
+                    href="#"
+                    variant="body2"
+                    onClick={() => setShowSignUp(!showSignUp)}
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
