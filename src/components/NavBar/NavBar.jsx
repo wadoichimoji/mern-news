@@ -95,7 +95,7 @@ export default function FixedBottomNavigation({ user, setUser }) {
             </ListItem>
             <Divider />
             <ListItem>
-              <ListItemButton>
+              <ListItemButton onClick={handleLogOut}>
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
