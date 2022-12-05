@@ -22,11 +22,11 @@ async function topStories(req, res) {
 }
 
 async function search(req, res) {
-  console.log(req.body.search);
   const newsUrl = new URL("https://newsapi.org/v2/everything?");
   const params = new URLSearchParams({
     q: req.body.search,
     language: "en",
+    pageSize: 10,
     apiKey: process.env.NEWS_KEY,
   });
   try {

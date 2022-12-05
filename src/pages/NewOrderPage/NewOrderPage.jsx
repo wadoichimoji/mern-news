@@ -20,7 +20,7 @@ export default function NewOrderPage() {
     <>
       <button onClick={handleClick}>Test API</button>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="search" defaultValue="bitcoin"></input>
+        <input type="text" name="search" defaultValue="bitcoin musk"></input>
         <button type="submit">Search</button>
       </form>
     </>
