@@ -1,15 +1,35 @@
+import React from "react";
 import StoryCard from "../../components/StoryCard/StoryCard";
 
-import React from 'react'
+import { experimentalStyled as styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
-export default function TopStoryPage({topStories}) {
-  console.log(topStories)
+export default function TopStoryPage({ topStories }) {
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
-    <>
-    <div>{topStories.map((story, idx) => {
-        return <StoryCard story={story} key={idx} />;
-    })}
-    </div>
-    </>
-  )
+    <Box class="page-body" sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 2, sm: 8, md: 12 }}
+      >
+        {topStories.map((story, idx) => {
+          return (
+            <Grid item xs={2} sm={4} md={4} key={idx}>
+              <StoryCard story={story} key={idx} />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
+  );
 }
