@@ -21,12 +21,13 @@ function App() {
       const stories = await newsAPI.topStories();
       setTopStories(stories);
     }
-    // async function saveStory(){
-    //   const stories = await newsAPI.getSavedStories()
-    //   setSavedStories(stories)
-    // }
-    getStory();
-  }, []);
+    async function saveStory(){
+      const stories = await newsAPI.getSavedStories()
+      setSavedStories(stories)
+    }
+    getStory(),
+    saveStory()
+  },[])
 
   async function getSearch(query) {
     const stories = await newsAPI.searchStories(query);
@@ -46,7 +47,7 @@ function App() {
             <Route
               path="/stories/saved"
               element={
-                <SavedStoriesPage savedStories={savedStories.articles} />
+                <SavedStoriesPage savedStories={savedStories} />
               }
             />
             <Route

@@ -1,7 +1,13 @@
 import React from 'react'
+import StoryCard from '../../components/StoryCard/StoryCard';
 
-export default function SavedStoryPage() {
+export default function SavedStoryPage({savedStories}) {
   return (
-    <div>Saved Stories</div>
+    <>
+    <div>{savedStories.map((story, idx) => {
+        return <StoryCard story={story} key={idx} /> ;
+    })}
+    </div>
+    </>
   )
 }

@@ -31,7 +31,7 @@ export default function FixedNavigation({ user, setUser }) {
   const navigate = useNavigate();
   const handleTopStories = () => navigate("/stories/top");
   const handleSearch = () => navigate("/search");
-  // const handleSavedStories = () => navigate("/stories/saved");
+  const handleSavedStories = () => navigate("/stories/saved");
 
   function handleLogOut() {
     userService.logOut();
@@ -92,7 +92,7 @@ export default function FixedNavigation({ user, setUser }) {
               </ListItemButton>
             </ListItem>
             <ListItem>
-              <ListItemButton>
+              <ListItemButton onClick={handleSavedStories}>
                 <ListItemIcon>
                   <FavoriteIcon />
                 </ListItemIcon>
