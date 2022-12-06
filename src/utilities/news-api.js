@@ -5,3 +5,6 @@ export function topStories() {
   return sendRequest(`${BASE_URL}/topstories`);
 }
 
+export function searchStories(searchParam) {
+  return sendRequest(`${BASE_URL}/search`, "POST", searchParam);
+}

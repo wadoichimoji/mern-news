@@ -7,5 +7,22 @@ export default function NewOrderPage() {
     console.log(stories);
   }
 
-  return <button onClick={handleClick}>Test API</button>;
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    const searchParam = {
+      search: evt.target.search.value,
+    };
+    const searchStories = await News.searchStories(searchParam);
+    console.log(searchStories);
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>Test API</button>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="search" defaultValue="bitcoin musk"></input>
+        <button type="submit">Search</button>
+      </form>
+    </>
+  );
 }
