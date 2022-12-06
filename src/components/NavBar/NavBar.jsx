@@ -90,6 +90,7 @@ export default function FixedBottomNavigation({ user, setUser }) {
                 </ListItemButton>
               </ListItem>
             </Link>
+            <Link to="/stories/saved">
             <ListItem>
               <ListItemButton>
                 <ListItemIcon>
@@ -98,6 +99,7 @@ export default function FixedBottomNavigation({ user, setUser }) {
                 <ListItemText primary="Saved Stories" />
               </ListItemButton>
             </ListItem>
+            </Link>
             <Divider />
             <ListItem>
               <ListItemButton onClick={handleLogOut}>

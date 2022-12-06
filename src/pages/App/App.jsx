@@ -21,11 +21,12 @@ function App() {
       const stories = await newsAPI.topStories()
       setTopStories(stories)
     }
-    // async function saveStory(){
-    //   const stories = await newsAPI.getSavedStories()
-    //   setSavedStories(stories)
-    // }
-    getStory()
+    async function saveStory(){
+      const stories = await newsAPI.getSavedStories()
+      setSavedStories(stories)
+    }
+    getStory(),
+    saveStory()
   },[])
 
 
@@ -36,8 +37,7 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
-            <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
-            {/* <Route path="/stories" element={<TopStoriesPage />} /> */}
+            <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories}/>} />
             <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>
