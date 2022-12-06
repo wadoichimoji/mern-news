@@ -123,6 +123,7 @@ export default function FixedBottomNavigation({ user, setUser }) {
         }}
         sx={{ display: { sm: "none" } }}
       >
+
         <BottomNavigationAction label="Top Stories" icon={<GradeIcon />} />
         <BottomNavigationAction label="Search" icon={<SearchIcon />} />
         <BottomNavigationAction label="Saved Stories" icon={<FavoriteIcon />} />
