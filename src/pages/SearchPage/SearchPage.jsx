@@ -3,11 +3,11 @@ import React from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./SearchPage.css";
 
-export default function SearchPage() {
+export default function SearchPage({ query, setQuery, setSearch }) {
   return (
-    <Container class="list">
+    <Container className="list">
       <div>SearchPage</div>
-      <SearchBar />
+      <SearchBar query={query} setQuery={setQuery} setSearch={setSearch} />
     </Container>
   );
 }

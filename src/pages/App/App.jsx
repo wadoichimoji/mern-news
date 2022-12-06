@@ -10,24 +10,39 @@ import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
 import * as newsAPI from "../../utilities/news-api";
+import { StoreSharp } from "@mui/icons-material";
 
 function App() {
   const [user, setUser] = useState(getUser());
   const [topStories, setTopStories] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
+  const [searchStories, setSearchStories] = useState([]);
+  const [query, setQuery] = useState({ query: "" });
+  const [search, setSearch] = useState({ search: "" });
 
-  useEffect(function(){
-    async function getStory(){
-      const stories = await newsAPI.topStories()
-      setTopStories(stories)
+  useEffect(function () {
+    async function getStory() {
+      const stories = await newsAPI.topStories();
+      setTopStories(stories);
     }
     // async function saveStory(){
     //   const stories = await newsAPI.getSavedStories()
     //   setSavedStories(stories)
     // }
-    getStory()
-  },[])
+    getStory();
+  }, []);
 
+  useEffect(
+    function () {
+      async function getSearch() {
+        const stories = await newsAPI.searchStories(search);
+        setSearchStories(stories);
+        console.log(searchStories);
+      }
+      getSearch();
+    },
+    [search]
+  );
 
   return (
     <main className="App">
@@ -35,10 +50,26 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
-            <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
-            <Route path="/stories" element={<TopStoriesPage />} />
-            <Route path="/search" element={<SearchPage />} />
+            <Route
+              path="/stories/top"
+              element={<TopStoryPage topStories={topStories.articles} />}
+            />
+            <Route
+              path="/stories/saved"
+              element={
+                <SavedStoriesPage savedStories={savedStories.articles} />
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <SearchPage
+                  query={query}
+                  setQuery={setQuery}
+                  setSearch={setSearch}
+                />
+              }
+            />
           </Routes>
         </>
       ) : (

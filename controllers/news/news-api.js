@@ -32,6 +32,7 @@ async function search(req, res) {
   try {
     const response = await fetch(`${newsUrl}${params}`);
     const body = await response.json();
+    console.log();
     res.json(body);
   } catch (error) {
     res.status(400).json(error);
