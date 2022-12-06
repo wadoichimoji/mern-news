@@ -42,7 +42,7 @@ function App() {
           <Routes>
             <Route
               path="/stories/top"
-              element={<TopStoryPage topStories={topStories.articles} />}
+              element={<TopStoryPage topStories={topStories.articles} user={user} />}
             />
             <Route
               path="/stories/saved"

@@ -10,7 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 
 
-export default function StoryCard({ story }) {
+export default function StoryCard({ story, user }) {
 
   const [savedStory, setSavedStory] = useState(false)
 
@@ -37,7 +37,7 @@ export default function StoryCard({ story }) {
     }
    }
    fetchStory()
-   console.log(savedStory)
+   console.log(savedStory, "saving a story")
   },[])
 
   return (
@@ -46,7 +46,7 @@ export default function StoryCard({ story }) {
         component="img"
         height="140"
         image={savedStory ? story.urlToImage : story.imageUrl}
-        alt="green iguana"
+        alt="news story image"
       />
       <CardActions>
         {/* <a href={story.url}><Button size="small">{savedStory ? story.source : story.source.name}</Button></a> */}
