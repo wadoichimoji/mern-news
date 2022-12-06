@@ -30,15 +30,8 @@ function App() {
 
   async function getSearch(query) {
     const stories = await newsAPI.searchStories(query);
-    setSearchStories(stories);
+    setSearchStories(stories.articles);
   }
-
-  // useEffect(
-  //   function () {
-  //     console.log("Use Effect");
-  //   },
-  //   [search]
-  // );
 
   return (
     <main className="App">
@@ -58,7 +51,12 @@ function App() {
             />
             <Route
               path="/search"
-              element={<SearchPage getSearch={getSearch} />}
+              element={
+                <SearchPage
+                  getSearch={getSearch}
+                  searchStories={searchStories}
+                />
+              }
             />
           </Routes>
         </>
