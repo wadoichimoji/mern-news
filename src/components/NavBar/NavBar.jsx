@@ -21,6 +21,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -95,7 +96,7 @@ export default function FixedNavigation({ user, setUser }) {
                 <ListItemIcon>
                   <FavoriteIcon />
                 </ListItemIcon>
-                <ListItemText primary="Saved Stories" />
+                <ListItemText primary="Saved Stories"></ListItemText>
               </ListItemButton>
             </ListItem>
             <Divider />
@@ -104,7 +105,7 @@ export default function FixedNavigation({ user, setUser }) {
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
-                <ListItemText primary="Log Out" />
+                <ListItemText primary="Log Out"></ListItemText>
               </ListItemButton>
             </ListItem>
           </List>

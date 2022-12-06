@@ -3,11 +3,11 @@ import React from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./SearchPage.css";
 
-export default function SearchPage() {
+export default function SearchPage({ getSearch }) {
   return (
-    <Container class="page-body">
+    <Container className="list">
       <div>SearchPage</div>
-      <SearchBar />
+      <SearchBar getSearch={getSearch} />
     </Container>
   );
 }

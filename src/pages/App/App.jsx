@@ -8,11 +8,13 @@ import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
 import * as newsAPI from "../../utilities/news-api";
+import { StoreSharp } from "@mui/icons-material";
 
 function App() {
   const [user, setUser] = useState(getUser());
   const [topStories, setTopStories] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
+  const [searchStories, setSearchStories] = useState([]);
 
   useEffect(function () {
     async function getStory() {
@@ -25,6 +27,18 @@ function App() {
     // }
     getStory();
   }, []);
+
+  async function getSearch(query) {
+    const stories = await newsAPI.searchStories(query);
+    setSearchStories(stories);
+  }
+
+  // useEffect(
+  //   function () {
+  //     console.log("Use Effect");
+  //   },
+  //   [search]
+  // );
 
   return (
     <main className="App">
@@ -42,7 +56,10 @@ function App() {
                 <SavedStoriesPage savedStories={savedStories.articles} />
               }
             />
-            <Route path="/search" element={<SearchPage />} />
+            <Route
+              path="/search"
+              element={<SearchPage getSearch={getSearch} />}
+            />
           </Routes>
         </>
       ) : (
