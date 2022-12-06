@@ -5,7 +5,7 @@ import "./SearchPage.css";
 
 export default function SearchPage() {
   return (
-    <Container class="list">
+    <Container class="page-body">
       <div>SearchPage</div>
       <SearchBar />
     </Container>

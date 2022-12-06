@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as userService from "../../utilities/users-service";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -21,13 +21,16 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import {Link} from "react-router-dom";
 
 const drawerWidth = 240;
 
-export default function FixedBottomNavigation({ user, setUser }) {
+export default function FixedNavigation({ user, setUser }) {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
+  const navigate = useNavigate();
+  const handleTopStories = () => navigate("/stories/top");
+  const handleSearch = () => navigate("/search");
+  // const handleSavedStories = () => navigate("/stories/saved");
 
   function handleLogOut() {
     userService.logOut();
@@ -71,25 +74,22 @@ export default function FixedBottomNavigation({ user, setUser }) {
               </ListItemButton>
             </ListItem>
             <Divider />
-            <Link to='/stories/top'>
             <ListItem>
-              <ListItemButton>
+              <ListItemButton onClick={handleTopStories}>
                 <ListItemIcon>
                   <GradeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Top Stories" />
               </ListItemButton>
             </ListItem>
-            <Link to="/search">
-              <ListItem>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <SearchIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Search" />
-                </ListItemButton>
-              </ListItem>
-            </Link>
+            <ListItem>
+              <ListItemButton onClick={handleSearch}>
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="Search" />
+              </ListItemButton>
+            </ListItem>
             <ListItem>
               <ListItemButton>
                 <ListItemIcon>
@@ -123,8 +123,16 @@ export default function FixedBottomNavigation({ user, setUser }) {
         }}
         sx={{ display: { sm: "none" } }}
       >
-        <BottomNavigationAction label="Top Stories" icon={<GradeIcon />} />
-        <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+        <BottomNavigationAction
+          label="Top Stories"
+          icon={<GradeIcon />}
+          onClick={handleTopStories}
+        />
+        <BottomNavigationAction
+          label="Search"
+          icon={<SearchIcon />}
+          onClick={handleSearch}
+        />
         <BottomNavigationAction label="Saved Stories" icon={<FavoriteIcon />} />
         <BottomNavigationAction
           label="Log out"
