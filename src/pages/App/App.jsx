@@ -32,14 +32,15 @@ function App() {
     getStory();
   }, []);
 
+  async function getSearch() {
+    const stories = await newsAPI.searchStories(query);
+    setSearchStories(stories);
+    console.log(searchStories);
+  }
+
   useEffect(
     function () {
-      async function getSearch() {
-        const stories = await newsAPI.searchStories(search);
-        setSearchStories(stories);
-        console.log(searchStories);
-      }
-      getSearch();
+      console.log("Use Effect");
     },
     [search]
   );
@@ -67,6 +68,7 @@ function App() {
                   query={query}
                   setQuery={setQuery}
                   setSearch={setSearch}
+                  getSearch={getSearch}
                 />
               }
             />
