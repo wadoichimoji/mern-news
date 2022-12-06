@@ -37,7 +37,7 @@ function App() {
           <Routes>
             <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
             <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
-            <Route path="/stories" element={<TopStoriesPage />} />
+            {/* <Route path="/stories" element={<TopStoriesPage />} /> */}
             <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>

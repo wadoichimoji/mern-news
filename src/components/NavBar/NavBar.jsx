@@ -21,7 +21,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import {Link} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -80,6 +79,7 @@ export default function FixedBottomNavigation({ user, setUser }) {
                 <ListItemText primary="Top Stories" />
               </ListItemButton>
             </ListItem>
+            </Link>
             <Link to="/search">
               <ListItem>
                 <ListItemButton>

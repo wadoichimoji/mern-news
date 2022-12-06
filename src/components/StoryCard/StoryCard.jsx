@@ -22,7 +22,7 @@ export default function StoryCard({story}) {
       </CardActions>
       <CardContent>
         <Typography align="left" gutterBottom variant="h5" component="div">
-          News Story
+          <a href={story.url}>{story.title}</a>
         </Typography>
       </CardContent>
     </Card>
