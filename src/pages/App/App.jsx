@@ -15,8 +15,6 @@ function App() {
   const [topStories, setTopStories] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
   const [searchStories, setSearchStories] = useState([]);
-  const [query, setQuery] = useState({ query: "" });
-  const [search, setSearch] = useState({ search: "" });
 
   useEffect(function () {
     async function getStory() {
@@ -30,18 +28,17 @@ function App() {
     getStory();
   }, []);
 
-  async function getSearch() {
+  async function getSearch(query) {
     const stories = await newsAPI.searchStories(query);
     setSearchStories(stories);
-    console.log(searchStories);
   }
 
-  useEffect(
-    function () {
-      console.log("Use Effect");
-    },
-    [search]
-  );
+  // useEffect(
+  //   function () {
+  //     console.log("Use Effect");
+  //   },
+  //   [search]
+  // );
 
   return (
     <main className="App">
@@ -61,14 +58,7 @@ function App() {
             />
             <Route
               path="/search"
-              element={
-                <SearchPage
-                  query={query}
-                  setQuery={setQuery}
-                  setSearch={setSearch}
-                  getSearch={getSearch}
-                />
-              }
+              element={<SearchPage getSearch={getSearch} />}
             />
           </Routes>
         </>

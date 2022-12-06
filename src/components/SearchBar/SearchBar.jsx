@@ -1,19 +1,21 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function SearchBar({ query, setQuery, setSearch, getSearch }) {
+export default function SearchBar({ getSearch }) {
+  const [query, setQuery] = useState({ search: "" });
+
   async function handleSubmit(evt) {
     evt.preventDefault();
-    await setSearch({ search: query.query });
-    getSearch();
+    getSearch(query);
   }
 
   function handleChange(evt) {
-    setQuery({ ...query, query: evt.target.value });
+    setQuery({ ...query, search: evt.target.value });
   }
 
   return (
@@ -26,7 +28,7 @@ export default function SearchBar({ query, setQuery, setSearch, getSearch }) {
         fullWidth
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search News Stories"
-        value={query.query}
+        value={query.search}
         onChange={handleChange}
       />
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

@@ -22,6 +22,7 @@ async function topStories(req, res) {
 }
 
 async function search(req, res) {
+  console.log(req.body.search);
   const newsUrl = new URL("https://newsapi.org/v2/everything?");
   const params = new URLSearchParams({
     q: req.body.search,
