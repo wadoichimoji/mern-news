@@ -10,11 +10,14 @@ import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
 import * as newsAPI from "../../utilities/news-api";
+import DetailsPage from "../../components/DetailsPage/DetailsPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
   const [topStories, setTopStories] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
+  const [currentStory, setCurrentStory] = useState([]);
+
 
   useEffect(function(){
     async function getStory(){
@@ -35,9 +38,9 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles}/>} />
+            <Route path="/stories/top" element={<TopStoryPage topStories={topStories.articles} setCurrentStory={setCurrentStory} />} />
+            <Route path="/stories/detail" element={<DetailsPage test="test" story={currentStory} />} />
             <Route path="/stories/saved" element={<SavedStoriesPage savedStories={savedStories.articles}/>} />
-            <Route path="/stories" element={<TopStoriesPage />} />
             <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>

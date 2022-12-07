@@ -6,8 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-export default function StoryCard({story}) {
+export default function StoryCard({story, setCurrentStory}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -21,9 +22,11 @@ export default function StoryCard({story}) {
         <Button size="small">Save +</Button>
       </CardActions>
       <CardContent>
+        <Link to={{pathname:"/stories/detail", state: {test:"test"}}} onClick={()=> setCurrentStory(story)}>
         <Typography align="left" gutterBottom variant="h5" component="div">
           News Story
         </Typography>
+        </Link>
       </CardContent>
     </Card>
   );
