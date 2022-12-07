@@ -8,6 +8,7 @@ import "./App.css";
 import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
 import * as newsAPI from "../../utilities/news-api";
+import DetailsPage from "../DetailsPage/DetailsPage";
 import { StoreSharp } from "@mui/icons-material";
 import axios from "axios";
 
@@ -15,6 +16,8 @@ function App() {
   const [user, setUser] = useState(getUser());
   const [topStories, setTopStories] = useState([]);
   const [savedStories, setSavedStories] = useState([]);
+  const [currentStory, setCurrentStory] = useState([]);
+
   const [searchStories, setSearchStories] = useState([]);
 
   useEffect(function () {
@@ -22,13 +25,13 @@ function App() {
       const stories = await newsAPI.topStories();
       setTopStories(stories);
     }
-    async function saveStory(){
-      const stories = await newsAPI.getSavedStories()
-      setSavedStories(stories)
+    async function saveStory() {
+      const stories = await newsAPI.getSavedStories();
+      setSavedStories(stories);
     }
-    getStory(),
-    saveStory()
-  },[])
+    getStory();
+    saveStory();
+  }, []);
 
   async function getSearch(query) {
     const stories = await newsAPI.searchStories(query);
@@ -36,13 +39,13 @@ function App() {
   }
 
   function handleDelete(id) {
-    setSavedStories(savedStories.filter(story => story._id !== id))
-    const token = localStorage.getItem("token")
-    const headers = {}
+    setSavedStories(savedStories.filter((story) => story._id !== id));
+    const token = localStorage.getItem("token");
+    const headers = {};
     if (token) {
       headers.Authorization = `Bearer ${token}`;
     }
-    axios.delete(`/api/news/${id}`, {headers: headers})
+    axios.delete(`/api/news/${id}`, { headers: headers });
   }
 
   return (
@@ -53,23 +56,19 @@ function App() {
           <Routes>
             <Route
               path="/stories/top"
-              element={<TopStoryPage topStories={topStories.articles} user={user} />}
-            />
-            <Route
-              path="/stories/saved"
               element={
-                <SavedStoriesPage savedStories={savedStories} handleDelete={handleDelete}/>
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <SearchPage
-                  getSearch={getSearch}
-                  searchStories={searchStories}
+                <TopStoryPage
+                  topStories={topStories.articles}
+                  user={user}
+                  setCurrentStory={setCurrentStory}
                 />
               }
             />
+            <Route
+              path="/stories/detail"
+              element={<DetailsPage story={currentStory} />}
+            />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>
       ) : (

@@ -134,9 +134,9 @@ export default function FixedNavigation({ user, setUser }) {
           icon={<SearchIcon />}
           onClick={handleSearch}
         />
-        <BottomNavigationAction 
-          label="Saved Stories" 
-          icon={<FavoriteIcon />} 
+        <BottomNavigationAction
+          label="Saved Stories"
+          icon={<FavoriteIcon />}
           onClick={handleSavedStories}
         />
         <BottomNavigationAction
