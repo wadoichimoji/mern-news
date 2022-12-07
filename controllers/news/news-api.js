@@ -1,5 +1,5 @@
 require("dotenv").config();
-const Story = require("../../models/story")
+const Story = require("../../models/story");
 
 module.exports = {
   topStories,
@@ -7,6 +7,7 @@ module.exports = {
   getSavedStories,
   fetchStory,
   search,
+  deleteStory
 };
 
 async function topStories(req, res) {
@@ -19,6 +20,15 @@ async function topStories(req, res) {
   try {
     const response = await fetch(`${newsUrl}${params}`);
     const body = await response.json();
+    let savedStories = await Story.find({
+      user: req.user._id
+    })
+    body.articles = body.articles.filter( element => {
+      for (let article of savedStories) {
+      return article.url !== element.url
+      }
+    })
+    console.log(body.articles)
     res.json(body);
   } catch (error) {
     res.status(400).json(error);
@@ -63,6 +73,16 @@ async function fetchStory(req, res) {
     res.status(400).json(err);
   }
 }
+
+async function deleteStory(req, res) {
+  try {
+    let storyDeleted = await Story.findByIdAndDelete(req.params.id)
+    res.status(200).json(storyDeleted)
+  } catch(err) {
+    res.status(400).json(err);
+  }
+}
+
 async function search(req, res) {
   console.log(req.body.search);
   const newsUrl = new URL("https://newsapi.org/v2/everything?");

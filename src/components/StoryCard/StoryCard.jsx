@@ -32,7 +32,7 @@ export default function StoryCard({ story, user }) {
         headers.Authorization = `Bearer ${token}`;
         let res = await axios.get(`/api/news/${story.url}`, {headers: headers})
         if (res.data) {
-        setSavedStory(true)
+        setSavedStory(res.data)
       }
     }
    }
@@ -45,11 +45,11 @@ export default function StoryCard({ story, user }) {
       <CardMedia
         component="img"
         height="140"
-        image={savedStory ? story.urlToImage : story.imageUrl}
+        image={story.urlToImage}
         alt="news story image"
       />
       <CardActions>
-        {/* <a href={story.url}><Button size="small">{savedStory ? story.source : story.source.name}</Button></a> */}
+        <a href={story.url}><Button size="small">{story.source.name}</Button></a>
         <Button size="small" onClick={ handleSave }>{ savedStory ? "Save +" : "Unsave -" }</Button>
       </CardActions>
       <CardContent>
