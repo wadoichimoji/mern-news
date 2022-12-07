@@ -23,7 +23,7 @@ function App() {
   useEffect(function () {
     async function getStory() {
       const stories = await newsAPI.topStories();
-      setTopStories(stories);
+      setTopStories(stories.articles);
     }
     async function saveStory() {
       const stories = await newsAPI.getSavedStories();
@@ -58,7 +58,7 @@ function App() {
               path="/stories/top"
               element={
                 <TopStoryPage
-                  topStories={topStories.articles}
+                  topStories={topStories}
                   user={user}
                   setCurrentStory={setCurrentStory}
                 />
@@ -68,7 +68,15 @@ function App() {
               path="/stories/detail"
               element={<DetailsPage story={currentStory} />}
             />
-            <Route path="/search" element={<SearchPage />} />
+            <Route
+              path="/search"
+              element={
+                <SearchPage
+                  getSearch={getSearch}
+                  searchStories={searchStories}
+                />
+              }
+            />
           </Routes>
         </>
       ) : (
