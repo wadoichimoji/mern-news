@@ -9,5 +9,6 @@ router.post("/saveStory", ensureLoggedIn, newsCtrl.saveStory);
 router.get("/:url", ensureLoggedIn, newsCtrl.fetchStory);
 router.get("/topstories", newsCtrl.topStories);
 router.post("/search", newsCtrl.search);
+router.delete("/:id", ensureLoggedIn, newsCtrl.deleteStory);
 
 module.exports = router;

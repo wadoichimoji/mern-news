@@ -10,7 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 
 
-export default function StoryCard({ story }) {
+export default function StoryCard({ story, user }) {
 
   const [savedStory, setSavedStory] = useState(false)
 
@@ -32,12 +32,12 @@ export default function StoryCard({ story }) {
         headers.Authorization = `Bearer ${token}`;
         let res = await axios.get(`/api/news/${story.url}`, {headers: headers})
         if (res.data) {
-        setSavedStory(true)
+        setSavedStory(res.data)
       }
     }
    }
    fetchStory()
-   console.log(savedStory)
+   console.log(savedStory, "saving a story")
   },[])
 
   return (
@@ -45,11 +45,11 @@ export default function StoryCard({ story }) {
       <CardMedia
         component="img"
         height="140"
-        image={savedStory ? story.urlToImage : story.imageUrl}
-        alt="green iguana"
+        image={story.urlToImage}
+        alt="news story image"
       />
       <CardActions>
-        {/* <a href={story.url}><Button size="small">{savedStory ? story.source : story.source.name}</Button></a> */}
+        <a href={story.url}><Button size="small">{story.source.name}</Button></a>
         <Button size="small" onClick={ handleSave }>{ savedStory ? "Save +" : "Unsave -" }</Button>
       </CardActions>
       <CardContent>

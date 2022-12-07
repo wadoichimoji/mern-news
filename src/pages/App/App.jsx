@@ -9,6 +9,7 @@ import TopStoryPage from "../TopStoryPage/TopStoryPage";
 import SavedStoriesPage from "../SavedStoriesPage/SavedStoriesPage";
 import * as newsAPI from "../../utilities/news-api";
 import { StoreSharp } from "@mui/icons-material";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -34,6 +35,16 @@ function App() {
     setSearchStories(stories.articles);
   }
 
+  function handleDelete(id) {
+    setSavedStories(savedStories.filter(story => story._id !== id))
+    const token = localStorage.getItem("token")
+    const headers = {}
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+    axios.delete(`/api/news/${id}`, {headers: headers})
+  }
+
   return (
     <main className="App">
       {user ? (
@@ -42,12 +53,12 @@ function App() {
           <Routes>
             <Route
               path="/stories/top"
-              element={<TopStoryPage topStories={topStories.articles} />}
+              element={<TopStoryPage topStories={topStories.articles} user={user} />}
             />
             <Route
               path="/stories/saved"
               element={
-                <SavedStoriesPage savedStories={savedStories} />
+                <SavedStoriesPage savedStories={savedStories} handleDelete={handleDelete}/>
               }
             />
             <Route
