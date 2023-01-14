@@ -11,7 +11,7 @@ module.exports = {
 };
 
 async function topStories(req, res) {
-  const newsUrl = new URL("https://newsapi.org/v2/top-headlines?");
+  const newsUrl = new URL("https://newsapi.org/v2/top-headlines?country=ca&apiKey=645bce3471a34a9f82d53ecd4a2bd28f");
   const params = new URLSearchParams({
     language: "en",
     country: "ca",
